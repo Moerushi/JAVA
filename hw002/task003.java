@@ -14,7 +14,7 @@ public class task003 {
     String newStr = str.replaceAll("а", "А");
     Long finishStr = System.currentTimeMillis();
     System.out.printf("Finish at %d ms\n", finishStr);
-    System.out.printf("Diffference %d ms\n", finishStr-startStr);
+    System.out.printf("Difference %d ms\n", finishStr-startStr);
     System.out.println(newStr);
 
     System.out.println("~".repeat(15));
@@ -26,7 +26,7 @@ public class task003 {
     String newStrSb = sb.toString().replaceAll("а", "А");
     Long finishSb = System.currentTimeMillis();
     System.out.printf("Finish at %d ms\n", finishSb);
-    System.out.printf("Diffference %d ms\n", finishSb-startSb);
+    System.out.printf("Difference %d ms\n", finishSb-startSb);
     System.out.println(newStrSb);
   }
 }
