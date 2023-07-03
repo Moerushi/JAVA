@@ -1,5 +1,5 @@
 package oop_project001;
 
-public class Wizard {
+public class Wizard extends BasicHero {
   
 }

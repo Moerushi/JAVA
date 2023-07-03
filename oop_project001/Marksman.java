@@ -1,5 +1,5 @@
 package oop_project001;
 
-public class Marksman {
+public class Marksman extends Sharpshooter {
   
 }

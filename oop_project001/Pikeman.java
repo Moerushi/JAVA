@@ -1,5 +1,5 @@
 package oop_project001;
 
-public class Pikeman {
+public class Pikeman extends Peasant {
   
 }
