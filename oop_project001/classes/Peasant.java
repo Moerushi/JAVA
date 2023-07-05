@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Peasant extends BasicHero {
 
@@ -12,5 +12,10 @@ public class Peasant extends BasicHero {
     super.strength += 1;
 
   }
+
+      @Override
+    public void Step() {
+
+    }
   
 }

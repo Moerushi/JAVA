@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Monk extends BasicHero {
 
@@ -22,8 +22,13 @@ public class Monk extends BasicHero {
 
     public void GetInfo() {
     super.GetInfo();
-    System.out.printf("SP: %s\n", this.spiritPoints);
-    System.out.printf("Strength: %s\n", this.strength);
+    System.out.printf("SP: %d\n", this.spiritPoints);
+    System.out.printf("Strength: %d\n", this.strength);
   }
+
+    @Override
+    public void Step() {
+
+    }
 
 }

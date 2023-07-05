@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Sharpshooter extends BasicHero {
 
@@ -21,10 +21,13 @@ public Sharpshooter(String name) {
 
     public void GetInfo() {
     super.GetInfo();
-    System.out.printf("CP: %s\n", this.concentration);
-    System.out.printf("Agility: %s\n", this.agility);
+    System.out.printf("CP: %d\n", this.concentration);
+    System.out.printf("Agility: %d\n", this.agility);
   }
 
+    @Override
+    public void Step() {
 
+    }
   
 }

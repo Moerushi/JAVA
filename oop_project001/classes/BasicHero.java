@@ -1,6 +1,8 @@
-package oop_project001;
+package oop_project001.classes;
 
-public class BasicHero {
+import oop_project001.dictionaries.Actions;
+
+public abstract class BasicHero implements Actions {
 
   protected static int heroId;
   protected String name;
@@ -27,7 +29,7 @@ public class BasicHero {
 
   public BasicHero(String name) {
     this.name = name;
-    heroId++;
+    heroId +=1;
     this.minlvl = 1;
     this.maxlvl = 100;
     this.minHp = 100;
@@ -46,19 +48,29 @@ public class BasicHero {
   }
 
   public void GetInfo() {
-    System.out.printf("Hero #%s: %s\n", heroId, this.name);
+    System.out.printf("Hero # %d: %s\n", heroId, this.name);
     System.out.printf("Class: %s\n", this.getClass().getSimpleName());
     System.out.println("-".repeat(20));
-    System.out.printf("HP: %s\n", this.minHp);
-    System.out.printf("Phisical damage: %s\n", this.phisicalDamage);
-    System.out.printf("Initiative: %s\n", this.initiative);
-    System.out.printf("Intelligence: %s\n", this.intelligence);
+    System.out.printf("HP: %d\n", this.minHp);
+    System.out.printf("Phisical damage: %d\n", this.phisicalDamage);
+    System.out.printf("Initiative: %d\n", this.initiative);
+    System.out.printf("Intelligence: %d\n", this.intelligence);
   }
 
   public void BeautifulInfo () {
     System.out.println("~".repeat(20));
     this.GetInfo();
     System.out.println("~".repeat(20));
+  }
+
+  public void TypeInfo () {
+    System.out.println("~".repeat(20));
+    System.out.printf("Hero # %d: Name: %s Type: %s\n", heroId, this.name, this.getClass().getSimpleName());
+    System.out.println("~".repeat(20));
+  }
+
+  public static int GetId(){
+    return heroId;
   }
 
 }

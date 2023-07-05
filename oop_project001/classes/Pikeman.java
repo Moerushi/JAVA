@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Pikeman extends Peasant {
 

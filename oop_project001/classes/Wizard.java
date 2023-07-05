@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Wizard extends BasicHero {
 
@@ -18,9 +18,14 @@ public class Wizard extends BasicHero {
 
     public void GetInfo() {
     super.GetInfo();
-    System.out.printf("Magical damage: %s\n", this.magicalDamage);
-    System.out.printf("MP: %s\n", this.manaPoints);
-    System.out.printf("Intelligence: %s\n", this.intelligence);
+    System.out.printf("Magical damage: %d\n", this.magicalDamage);
+    System.out.printf("MP: %d\n", this.manaPoints);
+    System.out.printf("Intelligence: %d\n", this.intelligence);
   }
+
+      @Override
+    public void Step() {
+
+    }
 
 }

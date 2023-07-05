@@ -1,4 +1,4 @@
-package oop_project001;
+package oop_project001.classes;
 
 public class Rogue extends Pikeman {
 
@@ -21,8 +21,8 @@ public class Rogue extends Pikeman {
 
   public void GetInfo() {
     super.GetInfo();
-    System.out.printf("EP: %s\n", this.energyPoints);
-    System.out.printf("Agility: %s\n", this.agility);
+    System.out.printf("EP: %d\n", this.energyPoints);
+    System.out.printf("Agility: %d\n", this.agility);
   }
 
 }
