@@ -1,6 +1,9 @@
 package oop_project001.classes;
 
+import java.util.HashMap;
+
 import oop_project001.dictionaries.Actions;
+import oop_project001.dictionaries.Coordinates;
 
 public abstract class BasicHero implements Actions {
 
@@ -23,13 +26,15 @@ public abstract class BasicHero implements Actions {
   protected int intelligence;
   protected int spirit;
 
+  protected Coordinates place;
+
   static {
     heroId = 0;
   }
 
-  public BasicHero(String name) {
+  public BasicHero(String name, int x, int y) {
     this.name = name;
-    heroId +=1;
+    heroId += 1;
     this.minlvl = 1;
     this.maxlvl = 100;
     this.minHp = 100;
@@ -45,6 +50,7 @@ public abstract class BasicHero implements Actions {
     this.agility = 1;
     this.intelligence = 1;
     this.spirit = 1;
+    place = new Coordinates(x, y);
   }
 
   public void GetInfo() {
@@ -57,20 +63,34 @@ public abstract class BasicHero implements Actions {
     System.out.printf("Intelligence: %d\n", this.intelligence);
   }
 
-  public void BeautifulInfo () {
+  public void BeautifulInfo() {
     System.out.println("~".repeat(20));
     this.GetInfo();
     System.out.println("~".repeat(20));
   }
 
-  public void TypeInfo () {
+  public void TypeInfo() {
     System.out.println("~".repeat(20));
-    System.out.printf("Hero # %d: Name: %s Type: %s\n", heroId, this.name, this.getClass().getSimpleName());
+    System.out.printf("Hero # %d: Name: %s Type: %s X: %d Y: %d\n", heroId, this.name, this.getClass().getSimpleName(),
+        place.x, place.y);
     System.out.println("~".repeat(20));
   }
 
-  public static int GetId(){
+  public static int GetId() {
     return heroId;
+  }
+
+  protected void FindNearestEnemy(HashMap<Integer, BasicHero> enemy) {
+    double minDist = 1000;
+    String nearestEnemy = "";
+    for (var key : enemy.entrySet()) {
+      double curDist = place.CalculateDistance(key.getValue().place);
+      if (curDist < minDist) {
+        minDist = curDist;
+        nearestEnemy = key.getValue().name;
+      }
+    }
+    System.out.printf("Расстояние от героя %s до ближайшего противника %s равно %f ш.\n", name, nearestEnemy, minDist);
   }
 
 }

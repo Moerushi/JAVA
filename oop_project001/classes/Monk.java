@@ -1,11 +1,14 @@
 package oop_project001.classes;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Monk extends BasicHero {
 
   protected int spiritPoints;
 
-  public Monk(String name) {
-    super(name);
+  public Monk(String name, int x, int y) {
+    super(name, x, y);
     this.spiritPoints = 100;
     super.minHp += 30;
     super.phisicalDamage +=8;
@@ -26,9 +29,9 @@ public class Monk extends BasicHero {
     System.out.printf("Strength: %d\n", this.strength);
   }
 
-    @Override
-    public void Step() {
-
-    }
+  @Override
+  public void Step(HashMap<Integer, BasicHero> enemy) {
+    FindNearestEnemy(enemy);
+  }
 
 }

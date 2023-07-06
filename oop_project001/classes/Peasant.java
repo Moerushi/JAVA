@@ -1,9 +1,12 @@
 package oop_project001.classes;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Peasant extends BasicHero {
 
-  public Peasant(String name) {
-    super(name);
+  public Peasant(String name, int x, int y) {
+    super(name, x, y);
 
     super.minHp += 10;
     super.phisicalDamage += 1;
@@ -13,9 +16,9 @@ public class Peasant extends BasicHero {
 
   }
 
-      @Override
-    public void Step() {
-
-    }
+  @Override
+  public void Step(HashMap<Integer, BasicHero> enemy) {
+    FindNearestEnemy(enemy);
+  }
   
 }

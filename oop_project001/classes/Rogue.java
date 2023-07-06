@@ -4,8 +4,8 @@ public class Rogue extends Pikeman {
 
   private int energyPoints;
 
-  public Rogue(String name) {
-    super(name);
+  public Rogue(String name, int x, int y) {
+    super(name, x, y);
 
     super.minHp += 10;
     super.phisicalDamage += 1;

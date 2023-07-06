@@ -2,8 +2,8 @@ package oop_project001.classes;
 
 public class Pikeman extends Peasant {
 
-  public Pikeman(String name) {
-    super(name);
+  public Pikeman(String name, int x, int y) {
+    super(name, x, y);
 
     super.minHp += 10;
     super.phisicalDamage += 1;

@@ -1,11 +1,14 @@
 package oop_project001.classes;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Sharpshooter extends BasicHero {
 
   protected int concentration;
 
-public Sharpshooter(String name) {
-    super(name);
+public Sharpshooter(String name, int x, int y) {
+    super(name, x, y);
 
     super.minHp += 10;
     super.phisicalDamage += 1;
@@ -25,9 +28,9 @@ public Sharpshooter(String name) {
     System.out.printf("Agility: %d\n", this.agility);
   }
 
-    @Override
-    public void Step() {
-
-    }
+  @Override
+  public void Step(HashMap<Integer, BasicHero> enemy) {
+    FindNearestEnemy(enemy);
+  }
   
 }
