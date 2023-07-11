@@ -10,8 +10,8 @@ public class Monk extends BasicHero {
     super(name, x, y);
     this.spiritPoints = 100;
     super.minHp += 30;
-    super.damage +=4;
-    super.initiative +=3;
+    super.damage += 4;
+    super.initiative += 3;
 
     super.strength += 2;
     super.spirit += 2;
@@ -20,13 +20,20 @@ public class Monk extends BasicHero {
 
   @Override
   public void Step(ArrayList<BasicHero> enemy, ArrayList<BasicHero> ally) {
+    if (spiritPoints <= 0) {
+      return;
+    }
+    if (minHp > 0) {
+      BasicHero tempAlly = FindNearestHero(ally);
+      if (tempAlly.minHp < 100) {
+        tempAlly.minHp += 50;
+        spiritPoints--;
+      }
+    } else {
+      BasicHero tempEnemy = FindNearestHero(enemy);
+      tempEnemy.minHp -= this.damage;
+    }
 
-    if (minHp <=0){return;}
-    if (spiritPoints <=0){return;}
-
-    BasicHero temp = FindNearestEnemy(enemy);
-    temp.minHp -= this.damage;
-    spiritPoints --;
   }
 
 }

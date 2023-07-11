@@ -26,7 +26,7 @@ public class Wizard extends BasicHero {
       return;
     }
 
-    BasicHero temp = FindNearestEnemy(enemy);
+    BasicHero temp = FindNearestHero(enemy);
     temp.minHp -= this.damage;
     manaPoints--;
   }

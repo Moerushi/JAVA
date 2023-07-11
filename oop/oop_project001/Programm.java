@@ -15,25 +15,32 @@ import oop_project001.dictionaries.HeroNames;
 
 public class Programm {
 
+  public static int qtyMax = 10;
+  public static ArrayList<BasicHero> team1;
+  public static ArrayList<BasicHero> team2;
+  public static ArrayList<BasicHero> allTeams;
+
   public static void main(String[] args) throws Exception {
+    
+    team1 = CreateAndFillTeams(1, qtyMax);
+    team2 = CreateAndFillTeams(10, qtyMax);
+    allTeams = new ArrayList<>();
 
-    int qtyMax = 10;
-    System.out.println("~".repeat(30));
-    System.out.println("Команда 1");
-    ArrayList<BasicHero> team1 = CreateAndFillTeams(qtyMax);
-    PrintTeams(team1);
+    // System.out.println("~".repeat(30));
+    // System.out.println("Команда 1");
 
-    System.out.println("~".repeat(30));
-    System.out.println("Команда 2");
-    ArrayList<BasicHero> team2 = CreateAndFillTeams(qtyMax);
-    PrintTeams(team2);
+    // PrintTeams(team1);
 
-    ArrayList<BasicHero> allTeams = new ArrayList<>();
+    // System.out.println("~".repeat(30));
+    // System.out.println("Команда 2");
+
+    // PrintTeams(team2);
+
     allTeams.addAll(team1);
     allTeams.addAll(team2);
     allTeams.sort((o2, o1) -> o1.getInitiative() - o2.getInitiative());
-    
-    System.out.println("--- БИТВА ---");
+
+    // System.out.println("--- БИТВА ---");
     for (BasicHero item : allTeams) {
       if (team1.contains(item)) {
         team1.forEach(key -> key.Step(team2, team1));
@@ -42,13 +49,14 @@ public class Programm {
       }
     }
 
-    System.out.println("~".repeat(30));
-    System.out.println("Команда 1");
-    PrintTeams(team1);
-    System.out.println("~".repeat(30));
-    System.out.println("Команда 2");
-    PrintTeams(team2);
+    // System.out.println("~".repeat(30));
+    // System.out.println("Команда 1");
+    // PrintTeams(team1);
+    // System.out.println("~".repeat(30));
+    // System.out.println("Команда 2");
+    // PrintTeams(team2);
 
+    oop_project001.View.view();
   }
 
   public static void AddHeros(ArrayList<BasicHero> arr, int x, int y) throws Exception {
@@ -80,14 +88,14 @@ public class Programm {
 
   public static void PrintTeams(ArrayList<BasicHero> team) {
     for (var key : team) {
-      key.GetInfo();
+      System.out.println(key.GetInfo());
     }
   }
 
-  public static ArrayList<BasicHero> CreateAndFillTeams(Integer qty) throws Exception {
+  public static ArrayList<BasicHero> CreateAndFillTeams(Integer startLine, Integer qty) throws Exception {
     ArrayList<BasicHero> outTeam = new ArrayList<>();
     do {
-      AddHeros(outTeam, 1, new Random().nextInt(1, 100));
+      AddHeros(outTeam, startLine, new Random().nextInt(1, 10));
     } while (outTeam.size() != qty);
 
     return outTeam;

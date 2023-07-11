@@ -23,6 +23,7 @@ public abstract class BasicHero implements Actions {
   protected int spirit;
 
   protected Coordinates place;
+  public boolean busy;
 
   private static int defaultIndex;
   private static ArrayList<Integer> ids;
@@ -33,7 +34,7 @@ public abstract class BasicHero implements Actions {
   }
 
   public BasicHero(String name, int x, int y) {
-    
+
     if (!ids.contains(defaultIndex)) {
       this.heroId = defaultIndex;
       ids.add(defaultIndex);
@@ -57,20 +58,16 @@ public abstract class BasicHero implements Actions {
     place = new Coordinates(x, y);
   }
 
-  public void GetInfo() {
-    System.out.printf("Герой # %d: %s, ", this.heroId, this.name);
-    System.out.printf("Класс: %s, ", Classes.valueOf(this.getClass().getSimpleName()).GetName());
-    System.out.printf("HP: %d, ", this.minHp <= 0 ? 0 : this.minHp);
-    System.out.printf("Урон: %d, ", this.damage);
-    System.out.printf("Инициатива: %d, ", this.initiative);
-    System.out.printf("Координаты: (%d, %d)\n", this.place.x, this.place.y);
-
+  public String GetInfo() {
+    return String.format("Герой # %d: %s, Класс: %s, \u2661: %d, Урон: %d, Инициатива: %d, Координаты: (%d, %d)",
+        this.heroId, this.name, Classes.valueOf(this.getClass().getSimpleName()).GetName(),
+        (this.minHp <= 0 ? 0 : this.minHp), this.damage, this.initiative, this.place.x, this.place.y);
   }
 
-  protected BasicHero FindNearestEnemy(ArrayList<BasicHero> enemy) {
+  protected BasicHero FindNearestHero(ArrayList<BasicHero> hero) {
     double minDist = 1000;
     BasicHero reqHero = null;
-    for (BasicHero item : enemy) {
+    for (BasicHero item : hero) {
       double curDist = place.CalculateDistance(item.place);
       if (curDist < minDist) {
         reqHero = item;
@@ -82,6 +79,14 @@ public abstract class BasicHero implements Actions {
 
   public int getInitiative() {
     return this.initiative;
+  }
+
+  public Coordinates GetPlace() {
+    return place;
+  }
+
+  public int GetHp() {
+    return this.minHp;
   }
 
 }

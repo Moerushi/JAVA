@@ -15,7 +15,7 @@ public abstract class Infantry extends BasicHero {
 
     if (minHp <=0){return;}
 
-    BasicHero temp = FindNearestEnemy(enemy);
+    BasicHero temp = FindNearestHero(enemy);
     temp.minHp -= this.damage;
   }
   

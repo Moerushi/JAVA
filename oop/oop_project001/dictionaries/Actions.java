@@ -7,6 +7,6 @@ public interface Actions {
   
   void Step(ArrayList<BasicHero> enemy, ArrayList<BasicHero> ally);
 
-  void GetInfo(); 
+  String GetInfo(); 
 
 }
