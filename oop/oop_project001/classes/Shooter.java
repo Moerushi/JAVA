@@ -22,8 +22,8 @@ public abstract class Shooter extends BasicHero {
 
   @Override
   public String GetInfo() {
-    return String.format("%s  Выстрелы: %d", super.GetInfo(), this.shoot);
-}
+    return String.format("%s \u27B6 %d", super.GetInfo(), this.shoot);
+  }
 
   @Override
   public void Step(ArrayList<BasicHero> enemy, ArrayList<BasicHero> ally) {
@@ -31,23 +31,36 @@ public abstract class Shooter extends BasicHero {
     if (minHp <= 0) {
       return;
     }
-    if (shoot <= 0) {
-      return;
-    }
 
     BasicHero temp = FindNearestHero(enemy);
-    temp.minHp -= this.damage;
 
-    for (BasicHero item : ally) {
-      if ((item.getClass().getSimpleName().equals("Peasant"))
-          && !(((Peasant) (item)).busy)
-          && item.minHp > 0) {
-        ((Peasant) (item)).busy = true;
-        return;
+    if (shoot == 0) {
+      if (this.place.CalculateDistance(temp.place) < 2) {
+        temp.getDamage(this.damage);
+      } else {
+        if (this.place.x < temp.place.x) {
+          this.place.x++;
+        } else if (this.place.x > temp.place.x) {
+          this.place.x--;
+        } else if (this.place.y > temp.place.y) {
+          this.place.y--;
+        } else if (this.place.y < temp.place.y) {
+          this.place.x++;
+        }
       }
+    } else {
+      temp.getDamage(this.damage);
+      for (BasicHero item : ally) {
+        if ((item.getClass().getSimpleName().equals("Peasant"))
+            && !(((Peasant) (item)).busy)
+            && item.minHp > 0) {
+          ((Peasant) (item)).busy = true;
+          return;
+        }
+      }
+      shoot--;
     }
 
-    shoot--;
   }
 
 }

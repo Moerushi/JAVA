@@ -2,6 +2,7 @@ package oop_project001;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 import oop_project001.classes.BasicHero;
 import oop_project001.classes.Marksman;
@@ -21,42 +22,31 @@ public class Programm {
   public static ArrayList<BasicHero> allTeams;
 
   public static void main(String[] args) throws Exception {
-    
+
+    Scanner sc = new Scanner(System.in);
+
     team1 = CreateAndFillTeams(1, qtyMax);
     team2 = CreateAndFillTeams(10, qtyMax);
     allTeams = new ArrayList<>();
-
-    // System.out.println("~".repeat(30));
-    // System.out.println("Команда 1");
-
-    // PrintTeams(team1);
-
-    // System.out.println("~".repeat(30));
-    // System.out.println("Команда 2");
-
-    // PrintTeams(team2);
 
     allTeams.addAll(team1);
     allTeams.addAll(team2);
     allTeams.sort((o2, o1) -> o1.getInitiative() - o2.getInitiative());
 
-    // System.out.println("--- БИТВА ---");
-    for (BasicHero item : allTeams) {
-      if (team1.contains(item)) {
-        team1.forEach(key -> key.Step(team2, team1));
-      } else {
-        team2.forEach(key -> key.Step(team1, team2));
-      }
-    }
-
-    // System.out.println("~".repeat(30));
-    // System.out.println("Команда 1");
-    // PrintTeams(team1);
-    // System.out.println("~".repeat(30));
-    // System.out.println("Команда 2");
-    // PrintTeams(team2);
-
     oop_project001.View.view();
+
+    while (TotalHp(team1, team2)) {
+      sc.nextLine();
+      for (BasicHero item : allTeams) {
+        if (team1.contains(item)) {
+          item.Step(team2, team1);
+        } else {
+          item.Step(team1, team2);
+        }
+      }
+      oop_project001.View.view();
+    }
+    System.out.println("Конец");
   }
 
   public static void AddHeros(ArrayList<BasicHero> arr, int x, int y) throws Exception {
@@ -86,19 +76,24 @@ public class Programm {
 
   }
 
-  public static void PrintTeams(ArrayList<BasicHero> team) {
-    for (var key : team) {
-      System.out.println(key.GetInfo());
-    }
-  }
-
   public static ArrayList<BasicHero> CreateAndFillTeams(Integer startLine, Integer qty) throws Exception {
     ArrayList<BasicHero> outTeam = new ArrayList<>();
-    do {
-      AddHeros(outTeam, startLine, new Random().nextInt(1, 10));
-    } while (outTeam.size() != qty);
-
+    for (int i = 1; i <= qty; i++) {
+      AddHeros(outTeam, startLine, i);
+    }
     return outTeam;
   }
 
+  public static boolean TotalHp(ArrayList<BasicHero> arr1, ArrayList<BasicHero> arr2) {
+    int sum1 = 0;
+    int sum2 = 0;
+    for (BasicHero basicHero : arr1) {
+      sum1 += basicHero.GetHp();
+    }
+    for (BasicHero basicHero : arr2) {
+      sum2 += basicHero.GetHp();
+    }
+    if (sum1 == 0 || sum2 == 0) {return false;}
+    return true;
+}
 }

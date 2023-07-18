@@ -12,8 +12,13 @@ public class Wizard extends BasicHero {
     this.damage += 2;
     super.intelligence += 2;
     super.initiative += 3;
-    manaPoints = 100;
+    manaPoints = 30;
 
+  }
+
+  @Override
+  public String GetInfo() {
+    return String.format("%s \u2606 %d", super.GetInfo(), this.manaPoints);
   }
 
   @Override
@@ -27,7 +32,7 @@ public class Wizard extends BasicHero {
     }
 
     BasicHero temp = FindNearestHero(enemy);
-    temp.minHp -= this.damage;
+    temp.getDamage(this.damage);
     manaPoints--;
   }
 

@@ -54,22 +54,27 @@ public abstract class BasicHero implements Actions {
     this.strength = 1;
     this.agility = 1;
     this.intelligence = 1;
-    this.spirit = 1;
     place = new Coordinates(x, y);
   }
 
   public String GetInfo() {
-    return String.format("Герой # %d: %s, Класс: %s, \u2661: %d, Урон: %d, Инициатива: %d, Координаты: (%d, %d)",
-        this.heroId, this.name, Classes.valueOf(this.getClass().getSimpleName()).GetName(),
-        (this.minHp <= 0 ? 0 : this.minHp), this.damage, this.initiative, this.place.x, this.place.y);
+    return String.format("%s %s \u2661 %d \u2694 %d \u21EA %d",
+        this.name, Classes.valueOf(this.getClass().getSimpleName()).GetName(), 
+        this.minHp, this.damage, this.initiative);
+  }
+
+  protected void getDamage(float damage){
+    this.minHp -= damage;
+    if (minHp <= 0) minHp = 0;
+    if (minHp > 130) minHp = 130;
   }
 
   protected BasicHero FindNearestHero(ArrayList<BasicHero> hero) {
     double minDist = 1000;
-    BasicHero reqHero = null;
+    BasicHero reqHero = new Monk("default", 0,0);
     for (BasicHero item : hero) {
       double curDist = place.CalculateDistance(item.place);
-      if (curDist < minDist) {
+      if (curDist < minDist & item.minHp > 0) {
         reqHero = item;
         minDist = curDist;
       }
