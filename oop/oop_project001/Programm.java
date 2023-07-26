@@ -35,18 +35,40 @@ public class Programm {
 
     oop_project001.View.view();
 
-    while (TotalHp(team1, team2)) {
+    int deadCountTeam1 = 0;
+    int deadCountTeam2 = 0;
+    boolean endGame = false;
+
+    while (!endGame) {
       sc.nextLine();
       for (BasicHero item : allTeams) {
         if (team1.contains(item)) {
+          if (item.GetHp() <= 0) {
+            deadCountTeam1 += 1;
+          }
           item.Step(team2, team1);
         } else {
+          if (item.GetHp() <= 0) {
+            deadCountTeam2 += 1;
+          }
           item.Step(team1, team2);
         }
       }
       oop_project001.View.view();
+
+      if (deadCountTeam1 == team1.size()) {
+        System.out.println("Игра закончена\nПобедила команда 2");
+        endGame = true;
+      }
+      if (deadCountTeam2 == team2.size()) {
+        System.out.println("Игра закончена\nПобедила команда 1");
+        endGame = true;
+      }
+
+      deadCountTeam1 = 0;
+      deadCountTeam2 = 0;
     }
-    System.out.println("Конец");
+
   }
 
   public static void AddHeros(ArrayList<BasicHero> arr, int x, int y) throws Exception {
@@ -84,16 +106,4 @@ public class Programm {
     return outTeam;
   }
 
-  public static boolean TotalHp(ArrayList<BasicHero> arr1, ArrayList<BasicHero> arr2) {
-    int sum1 = 0;
-    int sum2 = 0;
-    for (BasicHero basicHero : arr1) {
-      sum1 += basicHero.GetHp();
-    }
-    for (BasicHero basicHero : arr2) {
-      sum2 += basicHero.GetHp();
-    }
-    if (sum1 == 0 || sum2 == 0) {return false;}
-    return true;
-}
 }
