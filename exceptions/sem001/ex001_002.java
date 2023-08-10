@@ -36,13 +36,13 @@ public class ex001_002 {
     return -2;
   }
 
-  public static String message(int exeption) {
+  public static String message(int exception) {
     
-    String m = switch (exeption) {
+    String m = switch (exception) {
         case -1 -> "Длина массива меньше  заданного минимума";
         case -2 -> "Искомый элемент не найден";
         case -3 -> "Вместо массива пришел null";
-        default -> "Индекс элемента = " + exeption;
+        default -> "Индекс элемента = " + exception;
     };
     return m;
 }

@@ -17,13 +17,13 @@ public class hw002 {
       b = Arrays.stream(args[1].split(", ")).mapToInt(Integer::parseInt).toArray();
     }
 
-    Answer ans = new Answer();
+    Answer1 ans = new Answer1();
     String itresume_res = Arrays.toString(ans.subArrays(a, b));
     System.out.println(itresume_res);
   }
 }
 
-class Answer {
+class Answer1 {
   public int[] subArrays(int[] a, int[] b) {
     if (a.length == b.length) {
       int[] resArr = new int[a.length];
