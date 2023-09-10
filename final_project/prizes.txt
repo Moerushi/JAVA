@@ -1,0 +1,6 @@
+ID:0 > Type: Constructor > Name: Technic > Frequency: 40%
+Prizes to be awarded: 1
+ID:1 > Type: Robot > Name: Cyrax > Frequency: 60%
+Prizes to be awarded: 0
+ID:0 > Type: Constructor > Name: Blocks > Frequency: 60%
+Prizes to be awarded: 0

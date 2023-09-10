@@ -1,0 +1,6 @@
+ID:1 > Type: Constructor > Name: Minecraft > Frequency: 50%
+Awards to be got: 2
+ID:2 > Type: Constructor > Name: Cubes > Frequency: 50%
+Awards to be got: 1
+ID:0 > Type: Constructor > Name: Builder > Frequency: 50%
+Awards to be got: 0

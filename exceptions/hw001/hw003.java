@@ -1,5 +1,4 @@
 package exceptions.hw001;
-
 import java.util.Arrays;
 
 // Не удаляйте этот класс - он нужен для вывода результатов на экран и проверки
