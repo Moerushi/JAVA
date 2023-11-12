@@ -40,6 +40,7 @@ public class task001 {
       System.out.println("Вы ввели меньше данных, чем требуется! Попробуйте еще раз: ");
       return getUserData();
     }
+    sc.close();
     return userData;
   }
 
